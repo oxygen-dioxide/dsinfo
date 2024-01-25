@@ -1,0 +1,4 @@
+name=DiffSinger Voicebank Information
+execute=dsinfo.py
+shell=use
+encoding=utf-8
