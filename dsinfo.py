@@ -25,20 +25,20 @@ if(path.is_file()):
         singerPath = GetSingerPath(path)
         if(singerPath is None):
             print(f"Please select a singer in OpenUtau first.")
-            input()
+            input("Press Enter to exit")
             exit(1)
     else:
         singerPath = path.parent
 elif(not path.is_dir()):
     print(f"Error: {path} is not a file or directory")
-    input()
+    input("\nPress Enter to exit")
     exit(1)
 
 print("Singer path:", singerPath)
 
 if(not (singerPath / "dsconfig.yaml").is_file()):
     print(f"Error: {singerPath} is not a DiffSinger voicebank")
-    input()
+    input("\nPress Enter to exit")
     exit(1)
 
 characterYaml = {
@@ -101,4 +101,4 @@ if(durConfig["dur"] is None):
 else:
     print("This singer uses DiffSinger variance duration model")
 
-input()
+input("\nPress Enter to exit")

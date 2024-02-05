@@ -1,3 +1,5 @@
+[**Download this plugin**](https://github.com/oxygen-dioxide/dsinfo/archive/refs/heads/main.zip)
+
 # DsInfo
 Show informations about a openutau diffsinger voicebank.
 
@@ -16,7 +18,7 @@ This singer uses DiffSinger variance duration model
 ```
 
 ## Usage
-Before using, please set python as the default application for opening .py files, and run the following command to install the modules it requires:
+Before using, please [install python](https://www.python.org/downloads/), set python as the default application for opening .py files, and run the following command to install the modules it requires:
 ```
 pip install pyyaml py_linq
 ```
