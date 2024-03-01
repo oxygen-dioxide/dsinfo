@@ -1,8 +1,10 @@
 import sys
-import yaml
-from   typing   import List, Tuple, Dict, Optional
+from   ruamel.yaml import YAML
+from   typing      import List, Tuple, Dict, Optional
 import pathlib
-from   py_linq  import Enumerable
+from   py_linq     import Enumerable
+
+yaml = YAML(typ='safe')
 
 def GetSingerPath(tmpFile:pathlib.Path) -> Optional[pathlib.Path]:
     with tmpFile.open("r", encoding="utf-8") as f:
@@ -45,7 +47,7 @@ characterYaml = {
     "subbanks" : []
 }
 if((singerPath / "character.yaml").is_file()):
-    characterYaml.update(yaml.safe_load((singerPath / "character.yaml").open("r", encoding="utf-8")))
+    characterYaml.update(yaml.load((singerPath / "character.yaml").open("r", encoding="utf-8")))
     if("subbanks" in characterYaml and isinstance(characterYaml["subbanks"], list) and len(characterYaml["subbanks"]) > 0):
         subbankNames = Enumerable(characterYaml["subbanks"]).select(lambda x: x["color"]).to_list()
         print(f"Voice colors: {' '.join(subbankNames)}")
@@ -60,7 +62,7 @@ acousticConfig = {
     "use_breathiness_embed":False,
     "use_shallow_diffusion":False,
 }
-acousticConfig.update(yaml.safe_load((singerPath / "dsconfig.yaml").open("r", encoding="utf-8")))
+acousticConfig.update(yaml.load((singerPath / "dsconfig.yaml").open("r", encoding="utf-8")))
 supportedExpressions = \
     acousticConfig["use_key_shift_embed"] * ["GENC"] + \
     acousticConfig["use_speed_embed"] * ["VELC"] + \
@@ -79,7 +81,7 @@ if((singerPath / "dspitch" / "dsconfig.yaml").is_file()):
     pitchPath = singerPath / "dspitch"
 else:
     pitchPath = singerPath
-pitchConfig.update(yaml.safe_load((pitchPath / "dsconfig.yaml").open("r", encoding="utf-8")))
+pitchConfig.update(yaml.load((pitchPath / "dsconfig.yaml").open("r", encoding="utf-8")))
 if(pitchConfig["pitch"] is None):
     print("This singer does not contain pitch model")
 else:
@@ -95,7 +97,7 @@ if((singerPath / "dsdur" / "dsconfig.yaml").is_file()):
     durPath = singerPath / "dsdur"
 else:
     durPath = singerPath
-durConfig.update(yaml.safe_load((durPath / "dsconfig.yaml").open("r", encoding="utf-8")))
+durConfig.update(yaml.load((durPath / "dsconfig.yaml").open("r", encoding="utf-8")))
 if(durConfig["dur"] is None):
     print("This singer does not use DiffSinger variance duration model")
 else:

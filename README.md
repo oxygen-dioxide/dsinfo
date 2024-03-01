@@ -20,7 +20,7 @@ This singer uses DiffSinger variance duration model
 ## Usage
 Before using, please [install python](https://www.python.org/downloads/), set python as the default application for opening .py files, and run the following command to install the modules it requires:
 ```
-pip install pyyaml py_linq
+pip install ruamel.yaml py_linq
 ```
 
 There are two ways to use this script:
